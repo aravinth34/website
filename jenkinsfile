@@ -4,10 +4,10 @@ node {
     git 'https://github.com/aravinth34/website.git'
 }
   stage ('backup')  {
-  
+  sh 'sshpass -f "/var/lib/jenkins/workspace/password" scp -o StrictHostKeyChecking=no -r maravinth@192.168.56.11:/usr/share/nginx/html/ /opt/nginx_bakup/test/'
   }
 
   stage ('Deployment'){
-  sh 'sshpass -f "/var/lib/jenkins/workspace/password" scp -rf /var/lib/jenkins/workspace/nginx/* maravinth@192.168.56.11:/usr/share/nginx/html/'
+  sh 'sshpass -f "/var/lib/jenkins/workspace/password" scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /var/lib/jenkins/workspace/nginx/* maravinth@192.168.56.11:/usr/share/nginx/html'
   }
 }
