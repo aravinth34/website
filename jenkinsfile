@@ -1,10 +1,14 @@
 node {
    
- stage ('git download'){
+ stage ('Git download'){
     git 'https://github.com/aravinth34/website.git'
 }
-  stage ('backup')  {
+  stage ('Backup')  {
   sh 'sshpass -f "/var/lib/jenkins/workspace/password" scp -o StrictHostKeyChecking=no -r maravinth@192.168.56.11:/usr/share/nginx/html/ /opt/nginx_bakup/test'
+  }
+
+  stage ('Backup_folder_change')  {
+  sh 'sh copy_folder.sh'
   }
 
   stage ('Deployment'){
