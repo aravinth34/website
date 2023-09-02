@@ -10,7 +10,7 @@ environment {
 	BD_Path_J = "/opt/nginx_bakup/test"
 	scpHtk = "StrictHostKeyChecking"
 	Back_fold_change = "copy_folder.sh"
-	DSou_Path_J = "/var/lib/jenkins/workspace/nginx/*"
+	DSou_Path_J = "/var/lib/jenkins/workspace/Nginx_Deploy/*"
 	DDes_Path_N = "/usr/share/nginx/html"
 			}
 
