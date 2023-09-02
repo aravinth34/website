@@ -3,7 +3,7 @@ pipeline 	{
 	
 environment {
 	git_link = "https://github.com/aravinth34/website.git"
-    server_n = "192.168.56.11"
+	server_n = "192.168.56.11"
 	user_n = "maravinth"
 	sshpass_pw = "/var/lib/jenkins/workspace/password"
 	BS_Path_N = "/usr/share/nginx/html/"
@@ -23,21 +23,28 @@ stages 		{
 }
 }
 
-  stage ('S2:Backup')  {
+  stage ('S2:Backup_Cleanup')  {
+  steps {
+  echo "info: $BD_Path_J"
+  sh 'rm -rf ${BD_Path_J}'
+  }
+  }
+
+  stage ('S3:Backup')  {
   steps	{
   echo "info: ${user_n} $sshpass_pw $server_n ${BS_Path_N} ${BD_Path_J}"
   sh "sshpass -f ${sshpass_pw} scp -o ${scpHtk}=no -r ${user_n}@${server_n}:${BS_Path_N} ${BD_Path_J}"
 }
 }
 
-  stage ('S3:Backup_folder_change')  {
+  stage ('S4:Backup_folder_change')  {
   steps {
   echo "info: $Back_fold_change"
   sh 'sh ${Back_fold_change}'
   }
   }
   
-    stage ('S4:Deployment'){
+    stage ('S5:Deployment'){
 	steps {
 	echo "info: Deployment"
   sh 'sshpass -f ${sshpass_pw} scp -o ${scpHtk}=no -r ${DSou_Path_J} ${user_n}@${server_n}:${DDes_Path_N}'
