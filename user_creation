@@ -1,0 +1,11 @@
+Create user:
+adduser appadmin
+passwd appadmin
+usermod -a -G wheel appadmin
+
+usermod -s /sbin/nologin appadmin     -diable login
+
+
+sudo visudo   -edit sudo file
+
+appadmin ALL=(ALL) NOPASSWD: /bin/bash, /bin/systemctl start nginx, /bin/systemctl stop nginx     -add this cmd in sudo file
