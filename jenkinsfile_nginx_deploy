@@ -12,6 +12,11 @@ environment {
 	Back_fold_change = "copy_folder.sh"
 	DSou_Path_J = "/var/lib/jenkins/workspace/Nginx_Deploy/*"
 	DDes_Path_N = "/usr/share/nginx/html"
+	user_n_a = "appadmin"
+	sshpass_pw_a = "/var/lib/jenkins/workspace/password_appadmin"
+	Nginx_start = "sudo systemctl start nginx"
+	Nginx_stop = "sudo systemctl stop nginx"
+	
 			}
 
 stages 		{
@@ -29,6 +34,15 @@ stages 		{
   sh 'rm -rf ${BD_Path_J}'
   }
   }
+  
+
+
+  stage ('S1:Nginx_stop')  {
+  steps	{
+  echo "info: $Nginx_stop"
+  sh "sshpass -f ${sshpass_pw_a} ssh -tt ${user_n_a}@${server_n} ${Nginx_stop}"
+}
+}	
 
   stage ('S3:Backup')  {
   steps	{
@@ -50,5 +64,15 @@ stages 		{
   sh 'sshpass -f ${sshpass_pw} scp -o ${scpHtk}=no -r ${DSou_Path_J} ${user_n}@${server_n}:${DDes_Path_N}'
   }
   }
+  
+ 
+  stage ('S1:Nginx_start')  {
+  steps	{
+  echo "info: $Nginx_start"
+  sh "sshpass -f ${sshpass_pw_a} ssh -tt ${user_n_a}@${server_n} ${Nginx_start}"
+}
+}
+
+
 }
 }
