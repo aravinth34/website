@@ -1,0 +1,23 @@
+pipeline 	{
+	agent any
+	
+environment {
+	server_n = "192.168.56.11"
+	user_n = "appadmin"
+	sshpass_pw = "/var/lib/jenkins/workspace/password_appadmin"
+	Nginx_stop = "sudo systemctl stop nginx"
+	
+
+			}
+
+stages 		{
+
+  stage ('S1:Nginx_stop')  {
+  steps	{
+  echo "info: $Nginx_stop"
+  sh "sshpass -f ${sshpass_pw} ssh -tt ${user_n}@${server_n} ${Nginx_stop}"
+}
+}
+
+}
+}
