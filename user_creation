@@ -3,7 +3,15 @@ adduser appadmin
 passwd appadmin
 usermod -a -G wheel appadmin
 
+Create Group:
+groupadd testg
+cat /etc/passwd
+cat /etc/group
+id maravinth
+sudo usermod -Gtestg maravinth
+
 usermod -s /sbin/nologin appadmin     -diable login
+
 
 
 sudo visudo   -edit sudo file
