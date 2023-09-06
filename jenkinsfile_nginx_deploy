@@ -10,7 +10,6 @@ environment {
 	BD_Path_J = "/opt/nginx_bakup/test"
 	scpHtk = "StrictHostKeyChecking"
 	Back_fold_change = "copy_folder.sh"
-	DSou_Path_J = "/var/lib/jenkins/workspace/Nginx_Deploy/*"
 	DDes_Path_N = "/usr/share/nginx/html"
 	user_n_a = "appadmin"
 	sshpass_pw_a = "/var/lib/jenkins/workspace/password_appadmin"
@@ -60,19 +59,24 @@ stages 		{
   
     stage ('S5:Deployment'){
 	steps {
-	echo "info: Deployment"
-  sh 'sshpass -f ${sshpass_pw} scp -o ${scpHtk}=no -r ${DSou_Path_J} ${user_n}@${server_n}:${DDes_Path_N}'
+	echo "info: Deployment $WORKSPACE"
+  sh 'sshpass -f ${sshpass_pw} scp -o ${scpHtk}=no -r ${WORKSPACE} ${user_n}@${server_n}:${DDes_Path_N}'
   }
   }
   
  
-  stage ('S1:Nginx_start')  {
+  stage ('S6:Nginx_start')  {
   steps	{
   echo "info: $Nginx_start"
   sh "sshpass -f ${sshpass_pw_a} ssh -tt ${user_n_a}@${server_n} ${Nginx_start}"
-}
-}
+  }
+  }
 
+  stage ('S7:Clean Up')  {
+  steps	{
+  cleanWs()
+  }
+  }
 
 }
 }
