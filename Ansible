@@ -9,6 +9,7 @@ ansible-config init --disabled -t all > ansible.cfg
 
 vi clients.txt
 ansible all -i clients.txt -m ping
+ansible all -i clients.txt -m ping --ask-pass
 ansible all -i clients.txt -a "uptime"
 
 
