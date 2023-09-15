@@ -2,11 +2,17 @@ vi /etc/hostname   - change hostname
 /etc/sysconfig/network-scripts/   --change onboot setting for network
 vi /etc/sysconfig/network-scripts/ifcfg-enp0s8
 
+ip addr    --check ip address
+
 ONBOOT=yes
 IPADDR=192.168.56.12
 PREFIX=24
 GATEWAY=192.168.56.1
 DNS1=192.168.56.1
+
+sudo timedatectl set-timezone Asia/Muscat    --time settings
+firewall-cmd --zone=public --add-port=8080/tcp --permanent      
+sudo netstat -tulpn | grep LISTEN   --port check
 
 Create user:
 adduser appadmin
