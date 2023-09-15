@@ -17,3 +17,4 @@ usermod -s /sbin/nologin appadmin     -diable login
 sudo visudo   -edit sudo file
 
 appadmin ALL=(ALL:ALL)         NOPASSWD: /bin/bash, /bin/systemctl start nginx, /bin/systemctl stop nginx     -add this cmd in sudo file
+maravinth  ALL= /bin/su, /sbin/shutdown now, /sbin/reboot
