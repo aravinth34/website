@@ -4,3 +4,11 @@ sudo pip3 install --upgrade pip
 python3 -V
 pip3 install ansible    -- install ansible with pip
 
+vi ansible.cfg
+ansible-config init --disabled -t all > ansible.cfg
+
+vi clients.txt
+ansible all -i clients.txt -m ping
+ansible all -i clients.txt -a "uptime"
+
+
