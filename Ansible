@@ -7,6 +7,9 @@ pip3 install ansible    -- install ansible with pip
 vi ansible.cfg
 ansible-config init --disabled -t all > ansible.cfg
 
+Playbook run cmd
+ansible-playbook -i clients.txt ansible_playbook_nginx.yml
+
 vi clients.txt
 ansible all -i clients.txt -m ping --ask-pass
 ansible all -i clients.txt -a "uptime" --ask-pass
