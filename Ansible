@@ -7,12 +7,15 @@ pip3 install ansible    -- install ansible with pip
 vi ansible.cfg
 ansible-config init --disabled -t all > ansible.cfg
 
+k, --ask-pass: ask for connection password
+K, --ask-become-pass: ask for privilege escalation password
+
 Playbook run cmd
-ansible-playbook -i clients.txt ansible_playbook_nginx.yml
+ansible-playbook -i clients.txt ansible_playbook_nginx.yml -kK
 
 vi clients.txt
-ansible all -i clients.txt -m ping --ask-pass
-ansible all -i clients.txt -a "uptime" --ask-pass
+ansible all -i clients.txt -m ping -k
+ansible all -i clients.txt -a "uptime" -k
 
 install nginx ([-b = become] { to become root user install nginx })
 ansible all -i clients.txt -m yum -a "name=nginx state=present" -b  
