@@ -1,0 +1,9 @@
+version: '3'
+services:
+   testng:
+    image: nginx:latest
+    restart: unless-stopped
+    ports:
+     - "8080:80"
+    volumes:
+     - "/home/maravinth/sync/html:/usr/share/nginx/html/"
