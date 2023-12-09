@@ -7,11 +7,13 @@ or
 
 ip addr    --check ip address
 
+nmcli
+
 ONBOOT=yes
-IPADDR=192.168.56.12
+IPADDR=192.168.122.12
 PREFIX=24
-GATEWAY=192.168.56.1
-DNS1=192.168.56.1
+GATEWAY=192.168.122.1
+DNS1=192.168.122.1
 
 sudo timedatectl set-timezone Asia/Muscat    --time settings
 firewall-cmd --zone=public --add-port=8080/tcp --permanent      
